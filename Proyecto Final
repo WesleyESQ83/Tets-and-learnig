@@ -1,1 +1,198 @@
+# Imprimir bienvenida
+print("¡Bienvenido a la aplicación móvil de Veterinaria Pauss!\n")
+print("Por favor, ingrese al sistema digitando sus datos:\n\n")
+
+# Módulo de Logueo
+usuario1 = "usuario1"
+contraseña1 = "contraseña1"
+
+usuario2 = "usuario2"
+contraseña2 = "contraseña2"
+
+usuario = input("Ingrese su nombre de usuario: ")
+contraseña = input("Ingrese su contraseña: ")
+
+if (usuario == usuario1 and contraseña == contraseña1) or (usuario == usuario2 and contraseña == contraseña2):
+    print("Ha iniciado sesión exitosamente.\n")
+else:
+    print("Su nombre de usuario o contraseña es incorrecto.\n")
+
+# Módulo de Registros
+
+# Registro de Médicos
+print("REGISTRO DE MÉDICOS:\n")
+
+medico1 = input("Digite el nombre del médico: ")
+codigoMedico1 = int(input("Digite un código para el médico: "))  # La disponibilidad del médico 1: L a V en la mañana
+telefonoMedico1 = int(input("Digite el número de teléfono del médico: "))
+correoMedico1 = input("Digite el correo electrónico del médico: ")
+disponibilidadMedico1 = input("Digite la disponibilidad del médico: ")
+
+print("\nMédico 1 registrado de manera exitosa.\n")
+
+medico2 = input("Digite el nombre del médico: ")
+codigoMedico2 = int(input("Digite un código para el médico: "))  # La disponibilidad del médico 2: Fin de semana mañana
+telefonoMedico2 = int(input("Digite el número de teléfono del médico: "))
+correoMedico2 = input("Digite el correo electrónico del médico: ")
+disponibilidadMedico2 = input("Digite la disponibilidad del médico: ")
+
+print("\nMédico 2 registrado de manera exitosa.")
+print("Registro de médicos completado.\n")
+
+# Registro del Dueño
+print("REGISTRO DE DATOS DEL DUEÑO:\n")
+
+nombreDueño1 = input("Digite el nombre completo del dueño: ")
+cedulaDueño1 = int(input("Digite la cédula del dueño: "))
+telefonoDueño1 = int(input("Digite el número de teléfono del dueño: "))
+correoDueño1 = input("Digite el correo electrónico del dueño: ")
+direccionDueño1 = input("Digite la dirección domiciliaria del dueño: ")
+
+print("\nEl dueño se ha registrado exitosamente.\n")
+
+# Registro de Mascotas
+print("REGISTRO DE MASCOTAS DEL DUEÑO\n")
+
+nombreMascota1 = input("Digite el nombre de la mascota: ")
+razaMascota1 = input("Digite la raza de la mascota: ")
+nacimientoMascota1 = input("Digite la fecha de nacimiento de la mascota (DD/MM/AAAA): ")
+sexoMascota1 = input("Digite el sexo de la mascota: ")
+pesoMacota1 = input("Digite el peso de la mascota: ")
+caracMascota1 = input("Digite las características de la mascota: ")
+alimentoMascota1 = input("Digite el nombre del alimento que come la mascota: ")
+observacionesMascota1 = input("Digite características generales de la mascota: ")
+
+print(f"\nMascota del dueño {nombreDueño1} se han registrado correctamente.\n")
+
+# Módulo Clínico
+
+# Agenda de Citas
+citas = []
+
+def agenda_cita():
+    print("AGENDA DE CITA:\n")
+
+    # Solicitar detalles de la cita
+    diaCita = input("Ingrese el día de la semana para la cita (Lunes/Martes/Miércoles/Jueves/Viernes/Sábado/Domingo): ")
+    turnoCita = input("Ingrese el turno de la cita (Mañana/Tarde/Fin): ")
+    horarioCita = int(input("Ingrese el horario de la cita (9, 10, 11, 1, 2, 3): "))
+
+    # Verificar si el horario está ocupado
+    horarioOcupado = False
+    for cita in citas:
+        if cita[0] == diaCita and cita[1] == turnoCita and cita[2] == horarioCita:
+            horarioOcupado = True
+            break
+
+    if horarioOcupado:
+        print("El horario seleccionado está ocupado. Por favor, seleccione otro horario.\n")
+        return
+
+    # Solicitar detalles de la cita
+    nombreMascota = input("Ingrese el nombre de la mascota: ")
+    nombreDueño = input("Ingrese el nombre del dueño: ")
+
+    print("Cita agendada correctamente.\n")
+    citas.append((diaCita, turnoCita, horarioCita, nombreMascota, nombreDueño))
+
+# Ejecutar agenda de cita hasta que el usuario decida salir
+while True:
+    agenda_cita()
+    respuesta = input("¿Desea agendar otra cita? (s/n): ")
+    if respuesta != "s":
+        print("¡Gracias por usar el sistema de agenda de citas!\n")
+        break
+
+# Vacunación
+citasVacunacion = []
+
+def agenda_vacunacion():
+    print("AGENDA DE VACUNACIÓN:\n")
+
+    # Solicitar detalles de la vacunación
+    dia = input("Ingrese el día de la semana para la vacunación (Lunes/Martes/Miércoles/Jueves/Viernes/Sábado/Domingo): ")
+    turno = input("Ingrese el turno de la vacunación (Mañana/Tarde/Fin): ")
+    horario = int(input("Ingrese el horario de la vacunación (9, 10, 11, 1, 2, 3): "))
+
+    # Verificar si el horario está ocupado
+    horarioOcupado = False
+    for cita in citasVacunacion:
+        if cita[0] == dia and cita[1] == turno and cita[2] == horario:
+            horarioOcupado = True
+            break
+
+    if horarioOcupado:
+        print("El horario seleccionado está ocupado. Por favor, seleccione otro horario.\n")
+        return
+
+    # Solicitar detalles de la vacunación
+    vacunaAplicar = input("Ingrese el nombre de la vacuna: ")
+    fechaColocacionVacuna = input("Ingrese la fecha de colocación de la vacuna (DD/MM/AAAA): ")
+    dosis = int(input("Ingrese la cantidad de dosis de la vacuna: "))
+    proximaCita = input("Ingrese la fecha de la próxima cita de vacunación (DD/MM/AAAA): ")
+    tiempoVolver = input("Ingrese en cuánto tiempo debe volver: ")
+
+
+    # Solicitar detalles de la cita
+    nombreMascota = input("Ingrese el nombre de la mascota: ")
+    nombreDueño = input("Ingrese el nombre del dueño: ")
+
+    nuevaCitaVacunacion = (dia, turno, horario, vacunaAplicar, fechaColocacionVacuna, dosis, proximaCita, tiempoVolver, nombreMascota, nombreDueño)
+    citasVacunacion.append(nuevaCitaVacunacion)
+
+    print("Cita de vacunación agendada correctamente.\n")
+
+# Ejecutar agenda de vacunación hasta que el usuario decida salir
+while True:
+    agenda_vacunacion()
+    respuesta = input("¿Desea agendar otra cita de vacunación? (s/n): ")
+    if respuesta != "s":
+        print("¡Gracias por usar el sistema de agenda de vacunación!\n")
+        break
+# Módulo de Historial
+
+def mostrar_ficha_clinica():
+    print("\nFICHA CLÍNICA\n")
+    print("Nombre de la mascota:", nombreMascota1)
+    print("Raza de la mascota:", razaMascota1)
+    print("Fecha de nacimiento de la mascota:", nacimientoMascota1)
+    print("Sexo de la mascota:", sexoMascota1)
+    print("Peso de la mascota:", pesoMacota1)
+    print("Características de la mascota:", caracMascota1)
+    print("Alimento que come la mascota:", alimentoMascota1)
+    print("Observaciones de la mascota:", observacionesMascota1)
+
+def mostrar_citas_programadas():
+    print("\nCITAS PROGRAMADAS\n")
+    for cita in citas:
+        print(f"Día: {cita[0]}, Turno: {cita[1]}, Horario: {cita[2]}, Mascota: {cita[3]}, Dueño: {cita[4]}")
+    for citaVacunacion in citasVacunacion:
+        print(f"Día: {citaVacunacion[0]}, Turno: {citaVacunacion[1]}, Horario: {citaVacunacion[2]}, Vacuna: {citaVacunacion[3]}, Próxima cita: {citaVacunacion[6]}, Mascota: {citaVacunacion[8]}, Dueño: {citaVacunacion[9]}")
+
+def mostrar_productos_vendidos():
+    print("\nLISTADO DE PRODUCTOS VENDIDOS\n")
+    print("Producto:", descripcion_producto)
+    print("Cantidad:", cantidad)
+    print("Precio unitario:", precio_unitario)
+
+def mostrar_historial():
+    print("MÓDULO DE HISTORIAL\n")
+    print("1. Visualizar ficha clínica")
+    print("2. Visualizar citas programadas")
+    print("3. Visualizar listado de productos vendidos")
+    opcion = input("Seleccione una opción (1/2/3): ")
+
+    if opcion == "1":
+        mostrar_ficha_clinica()
+    elif opcion == "2":
+        mostrar_citas_programadas()
+    elif opcion == "3":
+        mostrar_productos_vendidos()
+    else:
+        print("\nOpción no válida.")
+
+# Ejemplo de uso del módulo de historial
+mostrar_historial()
+
+
 
